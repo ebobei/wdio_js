@@ -1,6 +1,5 @@
 /* eslint multiline-comment-style: ["error", "separate-lines"] */
 require('dotenv').config();
-
 const ALLURE_PATH = process.env.ALLURE_PATH;
 const url = require('./envs');
 const testrailUtil = require('wdio-wdiov5testrail-reporter/lib');
@@ -29,7 +28,6 @@ const testrailReporterConfig = ['wdiov5testrail', {
 
 const config = {
     runner: 'local',
-    hostname: process.env.SELENOID_HOST_NAME,
     port: 80,
     path: '/wd/hub',
 
