@@ -1,5 +1,4 @@
 const { default: AllureReporter } = require('@wdio/allure-reporter');
-const loginData = require('../testdata/logindata');
 const { assert } = require('chai');
 
 class CompanyPage {
@@ -122,18 +121,6 @@ class CompanyPage {
             timeoutMsg: 'Кнопка "Заказать звонок" на форме заявки на обратный звонок для организаций не отображается или недоступна для клика!'
         });
         this.buttonSubmitRecall.click();
-    }
-
-    fillRecallForm() {
-        AllureReporter.addStep('Заполнение формы на обратный звонок');
-        this.recallTitle.waitForDisplayed({
-            timeout: 5000, 
-            timeoutMsg: 'Заголовок "Обратный звонок" не отображается!'
-        });
-        this.fieldOrganization.setValue('Бюро автотестов');
-        this.fieldNameToRecall.setValue('Автотестовый автотестер автотостович');
-        this.fieldEmailToRecall.setValue(loginData.email);
-        this.fieldPhoneToRecall.setValue(loginData.phonenumber);
     }
 
     checkCorporateContactBlock() {
@@ -327,18 +314,6 @@ class CompanyPage {
             }
         );
         this.fieldName.setValue('Автотестированное Автотестирование Автотестировича');
-    }
-
-    fillEmail() {
-        AllureReporter.addStep('Заполнение электронной почты в форме отзыва');
-        browser.waitUntil(
-            () => this.fielfEmail.isDisplayed() === true,
-            {
-                timeout: 5000,
-                timeoutMsg: 'Поле ввода Email не отображается!'
-            }
-        );
-        this.fielfEmail.setValue(loginData.email);
     }
 
     fillPhoneNumber() {

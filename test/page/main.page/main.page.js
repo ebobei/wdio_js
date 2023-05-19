@@ -1,4 +1,3 @@
-const loginData = require("../../testdata/logindata");
 const { default: AllureReporter } = require('@wdio/allure-reporter');
 const { assert } = require('chai');
 const brandsPage = require("../../page/brands.page");
@@ -403,11 +402,6 @@ class MainPage {
             "Выгодные предложения для подписчиков",
             "Некорректный заголовок блока подписки на рассылку!"
         );
-    }
-
-    inputEmailForSubscribe() {
-        AllureReporter.addStep('Ввод электронной почты для подписки на рассылку');
-        this.fieldEmailForSubscribe.setValue(loginData.email);
     }
 
     checkEmailSubscribeInputNotEmpty() {

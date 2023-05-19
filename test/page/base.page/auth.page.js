@@ -1,6 +1,5 @@
 const { default: AllureReporter } = require("@wdio/allure-reporter");
 const { assert } = require("chai");
-const loginData = require("../../testdata/logindata");
 
 class AuthPage {
   get fieldEmail() {
@@ -136,15 +135,6 @@ class AuthPage {
       "Восстановить пароль",
       "Некорректный заголовок окна ввода E-Mail для восстановления пароля!"
     );
-  }
-
-  inputUserEMailForRecovery() {
-    AllureReporter.addStep("Ввод почты для восстановления пароля");
-    this.fieldEmailForRecovery.waitForDisplayed({
-      timeout: 5000,
-      timeoutMsg: "Поле ввода почты для восстановления пароля не отображается!",
-    });
-    this.fieldEmailForRecovery.setValue(loginData.email);
   }
 
   clickButtonSend() {

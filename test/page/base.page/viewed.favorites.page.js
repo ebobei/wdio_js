@@ -1,7 +1,5 @@
 const { default: AllureReporter } = require('@wdio/allure-reporter');
 const { assert } = require('chai');
-const catalogHelper = require("../../helpers/catalog.helper");
-const searchData = require("../../testdata/searchdata");
 
 class ViewedAndFavoritesPage {
     get viewedAndFavoritesPanel() {return $('//div[@data-role="lower-panel-inner"]');}

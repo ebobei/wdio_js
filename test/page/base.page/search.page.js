@@ -1,6 +1,5 @@
 const { default: AllureReporter } = require('@wdio/allure-reporter');
 const { assert } = require('chai');
-const searchData = require("../../testdata/searchdata");
 
 class SearchPage {
     get fieldSearch() {return $('//input[@id="search"]');}
@@ -18,8 +17,6 @@ class SearchPage {
     get buttonSearch() {return $('//button[@class="searchbar__button btn btn-warning"]');}
 
     get buttonShortSearch() {return $('//*[@id="dompharm_autocomplete"]//button[@type="submit"][contains(text(),"Найти")]');}
-
-    get goodsTitleInHint() {return $(`//*[contains(text(), "${searchData.goodsName}")]`);}
 
     get goodsCategoryInHint() {return $('//span[contains(., " нео суспензия")]');}
 
@@ -63,27 +60,6 @@ class SearchPage {
         });
     }
 
-    inputSixSearchQueries() {
-        AllureReporter.addStep('Ввод шести уникальных поисковых запросов');
-        this.fieldSearch.setValue(searchData.firstSearchQuery);
-        this.clickButtonSearch();
-
-        this.fieldSearch.setValue(searchData.secondSearchQuery);
-        this.clickButtonSearch();
-
-        this.fieldSearch.setValue(searchData.thirdSearchQuery);
-        this.clickButtonSearch();
-
-        this.fieldSearch.setValue(searchData.fourthSearchQuery);
-        this.clickButtonSearch();
-
-        this.fieldSearch.setValue(searchData.fifthSearchQuery);
-        this.clickButtonSearch();
-
-        this.fieldSearch.setValue(searchData.sixthSearchQuery);
-        this.clickButtonSearch();
-    }
-
     clickButtonSearch() {
         AllureReporter.addStep('Нажатие на кнопку "Найти"');
         this.buttonSearch.waitForClickable({
@@ -100,33 +76,6 @@ class SearchPage {
             timeoutMsg: 'Кнопка "Найти" недоступна для клика! На короткой форме поиска.'
         });
         this.buttonShortSearch.click();
-    }
-
-    checkSearchHistory() {
-        AllureReporter.addStep('Проверка истории поиска');
-        this.clickSearchBar();
-        const searchHistory = this.searchQueryInHistoryCollection;
-        assert.equal(
-            searchHistory.length,
-            5,
-            "Количество поисковых запросов в истории менее пяти! Ранее было выполнено более 5 поисковых запросов"
-        );
-        let actualQueries = [];
-        let expectedQueries = [searchData.sixthSearchQuery,
-            searchData.fifthSearchQuery,
-            searchData.fourthSearchQuery,
-            searchData.thirdSearchQuery,
-            searchData.secondSearchQuery
-        ];
-        searchHistory.forEach(query => {
-            let queryText = query.getText();
-            actualQueries.push(queryText);
-        });
-        assert.sameOrderedMembers(
-            actualQueries,
-            expectedQueries,
-            'Тексты последних пяти поисковых запросов и список запросов в истории поиска не совпадают!'
-        );
     }
 
     clickSearchBar() {
