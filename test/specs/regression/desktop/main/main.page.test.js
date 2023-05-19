@@ -267,8 +267,8 @@ describe("Проверка навбара", function () {
   it("Проверить переход по метакатегориям товаров", function () {
     mainPage.clickButtonMetaCategory();
     metaPage.checkMetaPageTitle();
-    let metaButtonText = mainPage.clickButtonMetaCategory();
-    let metaTitleText = metaPage.checkMetaPageTitle();
+    const metaButtonText = mainPage.clickButtonMetaCategory();
+    const metaTitleText = metaPage.checkMetaPageTitle();
     assert.equal(
       metaButtonText,
       metaTitleText,
@@ -314,10 +314,10 @@ describe('Проверка блока "Отзывы клиентов"', function
   it("Проверить отображение отзывов клиентов", function () {
     mainPage.checkReviewsTitle();
     mainPage.checkReviewsCountOnMainPage();
-    let expectedCountOfReviews = mainPage.clickButtonAllReviews();
+    const expectedCountOfReviews = mainPage.clickButtonAllReviews();
     reviewsPage.selectCheckboxProperty();
     reviewsPage.checkReviewsTitle();
-    let actualCountOfReviews = reviewsPage.getActualCountOfReviews();
+    const actualCountOfReviews = reviewsPage.getActualCountOfReviews();
     assert.equal(
       expectedCountOfReviews,
       actualCountOfReviews,
