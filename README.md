@@ -1,5 +1,6 @@
 **Описание**
 
++ Основной язык программирования JavaScript. 
 + Основной фреймворк тестирования Webdriver IO (https://webdriver.io).   
 + В качестве раннера используется Mocha (https://mochajs.org/api/mocha);  
 + Для различных вариаций assert-ов применяется библиотека chai (https://www.chaijs.com);  
