@@ -1,12 +1,12 @@
 /* eslint multiline-comment-style: ["error", "separate-lines"] */
 require('dotenv').config();
 const ALLURE_PATH = process.env.ALLURE_PATH;
-const url = require('./envs');
+const url = require('./stands');
 const testrailUtil = require('wdio-wdiov5testrail-reporter/lib');
-const ENV = process.env.ENV;
+const STAND = process.env.ENV;
 const version = process.env.RELEASE_VERSION;
-if (!ENV || !['release', 'prod', 'stage'].includes(ENV)) {
-    console.log('Укажите ссылку на переменную окружения! Перед командой npm run необходимо добавить ENV=prod|release|stage');
+if (!STAND || !['release', 'prod', 'stage'].includes(STAND)) {
+    console.log('Укажите ссылку на переменную окружения! Перед командой npm run необходимо добавить STAND=prod|release|stage');
     process.exit();
 }
 let today = new Date();
